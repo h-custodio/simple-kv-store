@@ -1,7 +1,16 @@
 from kv_store import KVStore
 import commands as c
 
-# NEXT STEP: Add persistance
+# Issues to address: parser logic is still fragile
+# YOU ARE WORKING IN THE PERSISTENCE BRANCH RN #
+
+# Consider adding this later on
+# from pathlib import Path
+
+# log_file = Path(__file__).parent / "log.txt"
+
+# with open(log_file, "a") as f:
+#     f.write("log entry\n")
 
 def repl(store):
     while True:
@@ -19,7 +28,7 @@ def repl(store):
 
         result = c.execute(store, command, args)
         if result is not None:
-            print(result)        
+            print(result)
 
 
 def main():

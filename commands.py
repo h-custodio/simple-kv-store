@@ -8,7 +8,8 @@ def execute(store, command, args):
         exist = store.show()
 
         if args[0] not in exist:
-            return "this key does not exist"
+            print("this key does not exist")
+            return None
         else:
             return store.get(args[0])
 
@@ -16,7 +17,8 @@ def execute(store, command, args):
         exist = store.show()
 
         if args[0] not in exist:
-            return "this key does not exist"
+            print("this key does not exist")
+            return None
         else:
             store.delete(args[0])
             return args[0] + " has been deleted"
@@ -31,10 +33,21 @@ def execute(store, command, args):
         print("PONG")
         
     else:
-        return "command unknown" 
+        print("command unknown")
+        return None 
 
 def parse(string):
     if string == "":
         return
     else:
         return string.split()
+    
+
+# move into different file as system scales
+
+class Result:
+    def __init__(self):
+        success: bool
+        value: str | None = None
+        error: str | None = None
+        appendable: bool
