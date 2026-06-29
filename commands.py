@@ -50,4 +50,4 @@ class Result:
         success: bool
         value: str | None = None
         error: str | None = None
-        appendable: bool
+        appendable: bool = None
