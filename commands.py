@@ -5,7 +5,7 @@ def execute(store, command, args):
         return "OK"
 
     elif command == "GET" and len(args) == 1:
-        exist = store.dump()
+        exist = store.show()
 
         if args[0] not in exist:
             return "this key does not exist"
@@ -13,7 +13,7 @@ def execute(store, command, args):
             return store.get(args[0])
 
     elif command == "DEL" and len(args) == 1:
-        exist = store.dump()
+        exist = store.show()
 
         if args[0] not in exist:
             return "this key does not exist"
@@ -24,8 +24,8 @@ def execute(store, command, args):
     elif command == "QUIT":
         raise SystemExit("Stopping program")
     
-    elif command == "DUMP":
-            return store.dump()
+    elif command == "SHOW":
+            return store.show()
 
     elif command == "PING":
         print("PONG")
@@ -33,3 +33,8 @@ def execute(store, command, args):
     else:
         return "command unknown" 
 
+def parse(string):
+    if string == "":
+        return
+    else:
+        return string.split()

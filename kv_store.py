@@ -13,6 +13,9 @@ class KVStore:
         self.store.pop(key, None)
         return
     
-    def dump(self):
+    def show(self):
         return self.store.copy()
+    
+    def exists(self, key):
+        return key in self.store
         
