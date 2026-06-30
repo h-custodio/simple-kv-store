@@ -1,17 +1,6 @@
 from kv_store import KVStore
 import commands as cmd
 
-# Issues to address: parser logic is still fragile
-
-# YOU ARE WORKING IN THE PERSISTENCE BRANCH RN #
-
-# Consider adding this later on
-# from pathlib import Path
-
-# log_file = Path(__file__).parent / "log.txt"
-
-# with open(log_file, "a") as f:
-#     f.write("log entry\n")
 
 def repl(store):
     while True:
@@ -34,13 +23,16 @@ def repl(store):
             print(result.value)
 
             if result.appendable:
-                with open("log.txt", "a") as f:
-                    f.write(command + " " + " ".join(args) + "\n")
-
+                cmd.log(command, args)
 
 
 def main():
     store = KVStore()
+
+    try:
+        cmd.reconstruct(store)
+    except FileNotFoundError:
+        print("No existing log. Starting Fresh\n")
 
     print(
         "COMMANDS: SET, GET, DEL, SHOW, or QUIT to exit\n" \

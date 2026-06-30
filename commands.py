@@ -22,9 +22,6 @@ def execute(store, command, args) -> Result:
 
     if command == "SHOW":
             return Result(success=True, value=store.show())
-
-    if command == "PING":
-        return Result(success=True, value="Pong")
     
     if command == "QUIT":
         raise SystemExit("Stopping program")
@@ -39,7 +36,29 @@ def parse(string: str):
         return
     
     return string.split()
-    
+
+def log(command, args):
+    with open("log.txt", "a") as f:
+        f.write(command + " " + " ".join(args) + "\n")
+
+def reconstruct(store):
+    with open("log.txt", "r") as file:
+        for line in file:
+            parsed_line = line.split()
+
+            command = parsed_line[0]
+            args = parsed_line[1:]
+
+            execute(store, command, args)
+
+
+
+
+
+
+
+
+
 
 # move into different file as system scales
 
