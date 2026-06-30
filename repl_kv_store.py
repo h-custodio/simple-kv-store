@@ -33,6 +33,10 @@ def repl(store):
         else:
             print(result.value)
 
+            if result.appendable:
+                with open("log.txt", "a") as f:
+                    f.write(command + " " + " ".join(args) + "\n")
+
 
 
 def main():
