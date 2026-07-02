@@ -1,5 +1,7 @@
+import os
 
 # Consider dispatch table later on
+
 
 def execute(store, command, args) -> Result:
 
@@ -40,6 +42,7 @@ def parse(string: str):
 def log(command, args):
     with open("log.txt", "a") as f:
         f.write(command + " " + " ".join(args) + "\n")
+        f.flush()
 
 def reconstruct(store):
     with open("log.txt", "r") as file:
